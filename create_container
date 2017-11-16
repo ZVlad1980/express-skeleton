@@ -1,0 +1,30 @@
+docker run \
+-u nodejs \
+-w /home/nodejs/projects/myApp \
+--add-host=db01.domain.local:192.168.99.100 \
+-p 8081:8081 \
+-p 8082:8080 \
+-p 5858:5858 \
+-v /s:/s \
+-v /s/node:/home/nodejs/projects \
+--env-file /s/node/env.list \
+--name node \
+-ti vladimirzhuravov/nodejs:2.3 /bin/bash
+
+VM Forvarding port
+host -> guest
+1521 -> 1521
+8080 -> 8080
+60082 -> 8082
+8081 -> 8081
+60561 -> 22
+
+start debugger:
+see package.json script 'DEV'
+
+npm run dev
+
+В новой сессии:
+node-inspector
+
+в браузере: http://127.0.0.1:60082/?port=5858
